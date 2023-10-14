@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
-    <header className='bg-neutral-900 shadow-md shadow-neutral-600'>
+    <header className='bg-neutral-800 shadow-sm shadow-neutral-600'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-1'>
             <Link to='/'>
 
