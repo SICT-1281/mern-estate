@@ -65,7 +65,7 @@ export default function SignUp() {
           <span className='text-blue-700 font-mono'>Sign in</span>
         </Link>
       </div>
-      {error && <p ClassName='text-teal-400 mt-5'>{error}</p>}
+      {error && <p className='text-teal-400 mt-5 font-mono'>{error}</p>}
     </div>
   )
 }
