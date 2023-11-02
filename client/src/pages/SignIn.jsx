@@ -7,6 +7,7 @@ import {
   signInSuccess,
   signInFailure,
 } from '../redux/user/userSlice';
+import OAuth from '../components/OAuth';
 
 
 export default function SignIn() {
@@ -56,6 +57,7 @@ export default function SignIn() {
             <button disabled={loading} className='bg-pink-400 font-mono p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-80'>
               {loading ? 'Loading...': 'Sign IN'}
             </button>
+            <OAuth/>
       </form>
 
       <div className="flex gap-2 mt-3">
