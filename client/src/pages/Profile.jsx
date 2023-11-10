@@ -5,6 +5,7 @@ import {getStorage,ref,uploadBytesResumable,getDownloadURL} from 'firebase/stora
 import { app } from '../firebase';
 import { updateUserStart, updateUserSuccess, updateUserFailure,
          deleteUserFailure, deleteUserSuccess, deleteUserStart,
+         signOutUserStart,
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 export default function Profile() {
@@ -98,6 +99,21 @@ const handleDeleteUser = async () => {
   }
 };
 
+const handleSignOut = async () => {
+  try {
+    dispatch(signOutUserStart());
+    const res = await fetch('/api/auth/signout');
+    const data = await res.json();
+    if (data.success === false) {
+      dispatch(deleteUserFailure(data.message));
+      return;
+    }
+    dispatch(deleteUserSuccess(data));
+  } catch (error) {
+    dispatch(deleteUserFailure(data.message));
+  }
+};
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-pink-400 text-3xl font-semibold text-center my-7 font-mono'>Profile</h1>
@@ -137,7 +153,7 @@ const handleDeleteUser = async () => {
       </form>
       <div className="flex justify-between mt-3">
         <span onClick={handleDeleteUser} className='text-pink-400 cursor-pointer'>Delete Account</span>
-        <span className='text-pink-400 cursor-pointer'>Sign Out</span>
+        <span onClick={handleSignOut} className='text-pink-400 cursor-pointer'>Sign Out</span>
       </div>
       <p className='text-pink-200 mt-5 font-mono'>{error ? error : ''}</p>
       <p className='text-teal-200 mt-5'>
